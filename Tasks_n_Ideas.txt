@@ -12,3 +12,5 @@ questionaire. It might be a bit difficult but thats ok. -murtaza
 if you guys have any suggestions just write them here or in whatsapp.
 
 also as henri said about w3 school, you can get a lot of info regarding git commands and I really suggest to take a look at them coz we eventually need to work on separate branches as the project proceeds -m
+
+I have already committed the git so now you can see me -Linh 
