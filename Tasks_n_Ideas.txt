@@ -3,3 +3,10 @@ Highly recommend looking at W3Schools for instructions and guides for coding, th
 Tu is writing somthing...
 
 hehehehhe -murtaza
+
+
+I'll add the libraries and UI which is instructed in the project description and will let you'all know 
+after installing the libraries we'll start working on seprate branches on seprate features for our json
+questionaire. It might be a bit difficult but thats ok. -murtaza
+
+if you guys have any suggestions just write them here or in whatsapp.
