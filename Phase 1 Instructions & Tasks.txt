@@ -1,0 +1,6 @@
+I have first installed the mandatory dependencies which are React + Typescript project
+Then I installed the Material UI and in end Redux.
+
+You guys can try run the project to see whether its working or not by using command: npm run dev
+
+-Murtaza
