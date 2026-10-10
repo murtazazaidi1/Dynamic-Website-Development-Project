@@ -3,3 +3,11 @@ Then I installed the Material UI and in end Redux.
 You guys can try run the project to see whether its working or not by using command: npm run dev -Murtaza
 ====================================
 Works on my end -HK
+
+
+
+
+============================================================================================
+Group Task:
+Guys, see the "Issues" and tell what JSON format should we go with or just comment on a format already there if you don't have one! 
+It'll be cool if you guys do this before Tuesday and I'll share mine format tomorrow. -Murtaza
