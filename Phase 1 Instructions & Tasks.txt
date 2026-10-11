@@ -12,3 +12,8 @@ Group Task:
 Guys, see the "Issues" and tell what JSON format should we go with or just comment on a format already there if you don't have one! 
 It can also work like I suggest a format and you guys can have suggestions or improvement tips on mine JSON format. This way we all can discuss one format rather than having 5 different ones. Do tell me if you guys pick this option.
 It'll be cool if you guys do this before Tuesday and I'll share mine format tomorrow. -Murtaza
+
+============================================================================================
+
+As promised, I have added mine proposed format in "ISSUES" tab and you guys can give your suggestions there. -Murtaza
+
