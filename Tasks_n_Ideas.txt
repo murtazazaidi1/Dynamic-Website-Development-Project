@@ -20,4 +20,6 @@ I have already committed the git so now you can see me -Linh
 
 Guys, the first step is agree on one .json format. You guys can give your own ideas in docs/JSON Format Discussions.md like how we finalize it or just comment on the design if you don't have one! 
 ========================================
-Me and murtaza are adding the folder directory structure to the git so you dont have to worry about what to name files and so on, the .gitkeep you see in each folder is so that we are able to push empty folder to the github
+Me and murtaza are adding the folder directory structure to the git so you dont have to worry about what to name files and so on, the .gitkeep you see in each folder is so that we are able 
+to push empty folder to the github
+PS, you can delete the .gitkeep once there is something in the folder
