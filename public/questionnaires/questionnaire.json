@@ -1,0 +1,225 @@
+
+{
+  "id": "lab-student-feedback",
+  "title": "LAB UAS Student Feedback Questionnaire",
+  "description": "Share your experience studying at LAB University of Applied Sciences.",
+  "version": "1.0",
+  "introduction": {
+    "heading": "Welcome to LAB Student Feedback",
+    "text": "We would like to hear about your experience at LAB University of Applied Sciences.",
+    "instructions": "Please answer the questions based on your own experience."
+  },
+  "pages": [
+    {
+      "id": "page1",
+      "title": "Teaching and Learning",
+      "order": 1
+    },
+    {
+      "id": "page2",
+      "title": "Campus and Facilities",
+      "order": 2
+    },
+    {
+      "id": "page3",
+      "title": "Student Support",
+      "order": 3
+    }
+  ],
+  "categories": [
+    {
+      "id": "teaching-quality",
+      "pageId": "page1",
+      "parentId": null,
+      "title": "Teaching Quality",
+      "order": 1
+    },
+    {
+      "id": "course-content",
+      "pageId": "page1",
+      "parentId": "teaching-quality",
+      "title": "Course Content",
+      "order": 1
+    },
+    {
+      "id": "campus-facilities",
+      "pageId": "page2",
+      "parentId": null,
+      "title": "Campus Facilities",
+      "order": 1
+    },
+    {
+      "id": "study-spaces",
+      "pageId": "page2",
+      "parentId": "campus-facilities",
+      "title": "Study Spaces",
+      "order": 1
+    },
+    {
+      "id": "student-services",
+      "pageId": "page3",
+      "parentId": null,
+      "title": "Student Services",
+      "order": 1
+    },
+    {
+      "id": "academic-guidance",
+      "pageId": "page3",
+      "parentId": "student-services",
+      "title": "Academic Guidance",
+      "order": 1
+    }
+  ],
+  "questions": {
+    "q1": {
+      "categoryId": "teaching-quality",
+      "type": "slider",
+      "text": "How satisfied are you with the overall teaching quality?",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "required": true,
+      "scored": true,
+      "order": 1
+    },
+    "q2": {
+      "categoryId": "teaching-quality",
+      "type": "radio",
+      "text": "How clearly do teachers explain course topics?",
+      "options": [
+        { "label": "Not clearly", "value": 1 },
+        { "label": "Somewhat clearly", "value": 3 },
+        { "label": "Very clearly", "value": 5 }
+      ],
+      "required": true,
+      "scored": true,
+      "order": 2
+    },
+    "q3": {
+      "categoryId": "course-content",
+      "type": "select",
+      "text": "How relevant is the course content to your studies?",
+      "options": [
+        { "label": "Not relevant", "value": 1 },
+        { "label": "Somewhat relevant", "value": 3 },
+        { "label": "Very relevant", "value": 5 }
+      ],
+      "required": true,
+      "scored": true,
+      "order": 1
+    },
+    "q4": {
+      "categoryId": "course-content",
+      "type": "text",
+      "text": "What would you improve about the course content?",
+      "placeholder": "Write your feedback here",
+      "required": false,
+      "scored": false,
+      "order": 2
+    },
+    "q5": {
+      "categoryId": "campus-facilities",
+      "type": "slider",
+      "text": "How satisfied are you with the campus facilities?",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "required": true,
+      "scored": true,
+      "order": 1
+    },
+    "q6": {
+      "categoryId": "campus-facilities",
+      "type": "multiselect",
+      "text": "Which campus facilities do you use regularly?",
+      "options": [
+        { "label": "Library", "value": "library" },
+        { "label": "Computer labs", "value": "computer-labs" },
+        { "label": "Cafeteria", "value": "cafeteria" },
+        { "label": "Study rooms", "value": "study-rooms" }
+      ],
+      "required": false,
+      "scored": false,
+      "order": 2
+    },
+    "q7": {
+      "categoryId": "study-spaces",
+      "type": "radio",
+      "text": "How suitable are the study spaces for your needs?",
+      "options": [
+        { "label": "Not suitable", "value": 1 },
+        { "label": "Moderately suitable", "value": 3 },
+        { "label": "Very suitable", "value": 5 }
+      ],
+      "required": true,
+      "scored": true,
+      "order": 1
+    },
+    "q8": {
+      "categoryId": "study-spaces",
+      "type": "text",
+      "text": "What improvements would you suggest for study spaces?",
+      "placeholder": "Write your suggestions here",
+      "required": false,
+      "scored": false,
+      "order": 2
+    },
+    "q9": {
+      "categoryId": "student-services",
+      "type": "slider",
+      "text": "How satisfied are you with student support services?",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "required": true,
+      "scored": true,
+      "order": 1
+    },
+    "q10": {
+      "categoryId": "student-services",
+      "type": "date",
+      "text": "When did you last use a student support service?",
+      "required": false,
+      "scored": false,
+      "order": 2
+    },
+    "q11": {
+      "categoryId": "academic-guidance",
+      "type": "select",
+      "text": "How helpful is the academic guidance you receive?",
+      "options": [
+        { "label": "Not helpful", "value": 1 },
+        { "label": "Somewhat helpful", "value": 3 },
+        { "label": "Very helpful", "value": 5 }
+      ],
+      "required": true,
+      "scored": true,
+      "order": 1
+    },
+    "q12": {
+      "categoryId": "academic-guidance",
+      "type": "text",
+      "text": "What additional academic support would you like?",
+      "placeholder": "Write your answer here",
+      "required": false,
+      "scored": false,
+      "order": 2
+    }
+  },
+  "results": {
+    "title": "Your LAB UAS Feedback Results",
+    "calculation": {
+      "method": "average",
+      "rounding": "nearest-integer",
+      "excludeUnanswered": true,
+      "includeNestedQuestionsInParent": true
+    },
+    "radarChart": {
+      "enabled": true,
+      "min": 0,
+      "max": 5
+    },
+    "showNonScoredAnswers": true,
+    "allowPrint": true
+  }
+}
