@@ -204,7 +204,106 @@
       "required": false,
       "scored": false,
       "order": 2
-    }
+    },
+    "q13": {
+  "categoryId": "learning-resources",
+  "type": "slider",
+  "text": "How useful are the learning materials?",
+  "required": true,
+  "scored": true,
+  "order": 1,
+  "min": 1,
+  "max": 5,
+  "step": 1
+},
+"q14": {
+  "categoryId": "assessment",
+  "type": "slider",
+  "text": "How fair are the assessments?",
+  "required": true,
+  "scored": true,
+  "order": 1,
+  "min": 1,
+  "max": 5,
+  "step": 1
+},
+"q15": {
+  "categoryId": "practical-learning",
+  "type": "slider",
+  "text": "How useful are practical assignments?",
+  "required": true,
+  "scored": true,
+  "order": 1,
+  "min": 1,
+  "max": 5,
+  "step": 1
+},
+"q16": {
+  "categoryId": "library",
+  "type": "slider",
+  "text": "How satisfied are you with library services?",
+  "required": true,
+  "scored": true,
+  "order": 1,
+  "min": 1,
+  "max": 5,
+  "step": 1
+},
+"q17": {
+  "categoryId": "technology",
+  "type": "slider",
+  "text": "How reliable is campus Wi-Fi?",
+  "required": true,
+  "scored": true,
+  "order": 1,
+  "min": 1,
+  "max": 5,
+  "step": 1
+},
+"q18": {
+  "categoryId": "campus-environment",
+  "type": "slider",
+  "text": "How pleasant is the campus environment?",
+  "required": true,
+  "scored": true,
+  "order": 1,
+  "min": 1,
+  "max": 5,
+  "step": 1
+},
+"q19": {
+  "categoryId": "career-support",
+  "type": "slider",
+  "text": "How useful are career services?",
+  "required": true,
+  "scored": true,
+  "order": 1,
+  "min": 1,
+  "max": 5,
+  "step": 1
+},
+"q20": {
+  "categoryId": "international-support",
+  "type": "slider",
+  "text": "How helpful is international student support?",
+  "required": true,
+  "scored": true,
+  "order": 1,
+  "min": 1,
+  "max": 5,
+  "step": 1
+},
+"q21": {
+  "categoryId": "student-wellbeing",
+  "type": "slider",
+  "text": "How satisfied are you with wellbeing services?",
+  "required": true,
+  "scored": true,
+  "order": 1,
+  "min": 1,
+  "max": 5,
+  "step": 1
+}
   },
   "results": {
     "title": "Your LAB UAS Feedback Results",
