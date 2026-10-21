@@ -14,7 +14,7 @@ function PageResults({ page, questionnaire }: Props) {
   const categoryScores = pageCategories.map(category => ({
     id: category.id,
     name: category.title,
-    // score: calculateCategoryScore(category.id, questionnaire, answers)
+    score: calculateCategoryScore(category.id, questionnaire, answers)
   }));
 
   const radarData: { name: string; score: number }[] = [];
