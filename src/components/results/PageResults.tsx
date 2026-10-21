@@ -8,18 +8,18 @@ import RadarChart from './RadarChart';
 type Props = { page: QuestionnairePage; questionnaire: Questionnaire };
 
 function PageResults({ page, questionnaire }: Props) {
-  const answers = useSelector((state: RootState) => state.answers.answers);
+   const answers = useSelector((state: RootState) => state.answers.answers);
   const pageCategories = questionnaire.categories.filter(category => category.pageId === page.id);
 
   const categoryScores = pageCategories.map(category => ({
     id: category.id,
     name: category.title,
-    score: calculateCategoryScore(category.id, questionnaire, answers)
+    // score: calculateCategoryScore(category.id, questionnaire, answers)
   }));
 
   const radarData: { name: string; score: number }[] = [];
   for (const category of categoryScores) {
-    if (category.score !== null) {
+        if (category.score !== null) {
       radarData.push({ name: category.name, score: category.score });
     }
   }
