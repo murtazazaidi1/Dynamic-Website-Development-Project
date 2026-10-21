@@ -1,7 +1,8 @@
 // ============================================================================
 // QUESTION TYPES
 // ============================================================================
-
+//TODO 1correct any typoes
+//TODO 2 check back if pushed code on github clashes with this ugh >:(
 export type QuestionType =
     | 'text'
     | 'slider'
@@ -11,7 +12,26 @@ export type QuestionType =
     | 'date'
 
 export interface Option{
-    value: number
+    value: number | string
     label: string
 }
 
+export interface Question{
+    id: string
+    type: QuestionType
+    categoryId: string
+    text: string
+    required: boolean
+    scored: boolean
+    order: number
+    //below are the properties for specific types of questions
+    options?: Option[]
+    min?: number
+    max?: number
+    step?: number
+    placeholder?: string
+}
+
+// ============================================================================
+// CATEGORY TYPES
+// ============================================================================
