@@ -24,7 +24,7 @@ export interface Question{
     required: boolean
     scored: boolean
     order: number
-    //below are the properties for specific types of questions
+    //below are the properties for specific types of questions, like min value for slider and such
     options?: Option[]
     min?: number
     max?: number
@@ -35,3 +35,41 @@ export interface Question{
 // ============================================================================
 // CATEGORY TYPES
 // ============================================================================
+
+export interface Category{
+    id: string
+    pageId: string
+    parentId: string | null
+    title: string
+    order: number
+}
+
+// ============================================================================
+// PAGE STUFF
+// ============================================================================
+
+export interface Page{
+    id: string
+    title: string
+    order: number
+}
+
+export interface Introduction{
+    heading: string
+    text: string
+    instructions: string
+}
+
+// ============================================================================
+// RESULTS
+// ============================================================================
+
+export interface ResultsConfig{
+    title: string
+    calculation: {
+        method: string
+        rounding: string
+        excludeUnanswered: boolean
+        includeNestedQuestionsInParent: boolean
+    }
+}
