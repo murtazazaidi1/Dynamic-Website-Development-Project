@@ -77,3 +77,29 @@ export interface Questionnaire {
   questions: Record<string, Question>;
   results: QuestionnaireResults;
 }
+
+// Types used for saving answers in Redux
+export type AnswerValue = string | number | (string | number)[];
+
+export interface Answers {
+  [questionId: string]: AnswerValue;
+}
+
+// Redux state
+export interface QuestionnaireState {
+  config: Questionnaire | null;
+  answers: Answers;
+  currentPage: string;
+}
+
+// Types used for displaying results
+export interface RadarChartData {
+  category: string;
+  value: number;
+}
+
+export interface TextAnswerData {
+  questionId: string;
+  questionText: string;
+  answer: AnswerValue;
+}
