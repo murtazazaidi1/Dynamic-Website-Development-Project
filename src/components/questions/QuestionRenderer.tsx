@@ -4,7 +4,7 @@ import { Box, Typography } from "@mui/material";
 
 import type { Question } from "../../types/questionnaire";
 import type { RootState } from "../../store/store";
-import { saveAnswer } from "../../store/answerSlice";
+import { answerQuestion } from "../../store/answerSlice";
 
 import TextQuestion from "./TextQuestion";
 import RadioQuestion from "./RadioQuestion";
@@ -24,14 +24,13 @@ function QuestionRenderer({ questionId, question }: Props) {
 
   // Get the saved answer for this question
   const answer = useSelector(
-    (state: RootState) => state.answers.answers[questionId]
+    (state: RootState) => state.questionnaire.answers[questionId]
   );
 
   // Save the answer whenever the user changes it
-  function changeAnswer(value: string | number | (string | number)[]) {
-    dispatch(saveAnswer({ questionId, value }));
-  }
-
+    function changeAnswer(value: string | number | (string | number)[]) {
+      dispatch(answerQuestion({ questionId, answer: value }));
+    }
   let questionInput;
 
   if (question.type === "text") {
