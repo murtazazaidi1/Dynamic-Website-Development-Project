@@ -1,10 +1,10 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit"
-import { QuestionnaireConfig, Answers, QuestionnaireState} from "../types"
+import { createSlice, type PayloadAction } from "@reduxjs/toolkit"
+import type { Questionnaire, Answers, QuestionnaireState } from "../types/questionnaire"
 
 //from what i found online and learned from AI and all, the intial state has to be null as redux neeeds a starting state
 const initialState: QuestionnaireState = {
     config: null,
-    answers: null,
+    answers: {},
     currentPage: ""
 }
 
@@ -13,8 +13,8 @@ const answerSlice = createSlice({
     initialState,
     reducers: {
         //loads the questionnaire as seen in the name
-        loadQuestionnaire: (state, action: PayloadAction<QuestionnaireConfig>) => {
-            state.config = action.payload
+            loadQuestionnaire: (state, action: PayloadAction<Questionnaire>) => {
+                state.config = action.payload
             //this sets the current page as the first one
             if(action.payload.pages.length > 0) {
                 state.currentPage = action.payload.pages[0].id
@@ -25,25 +25,25 @@ const answerSlice = createSlice({
             state,
                 action: PayloadAction<{ questionId: string; answer: Answers[string] }>
         ) => {
-            if (!state.answers) {
-                state.answers = {}
-            }
             state.answers[action.payload.questionId] = action.payload.answer
         },
         //multiple pages so we need this to naviate between them
         navigateToPage: (state, action: PayloadAction<string>) => {
             state.currentPage = action.payload
         },
+            clearAnswers: (state) => {
+        state.answers = {}
+    },
         //resets the questionnaire if you wanna start from scratch
         resetQuestionnaire: (state) => {
             state.config = null
-            state.answers = null
+            state.answers = {}
             state.currentPage = ""
         },
     },
 })
 
-export const { loadQuestionnaire, answerQuestion, navigateToPage, resetQuestionnaire
+export const { loadQuestionnaire, answerQuestion, navigateToPage, resetQuestionnaire, clearAnswers
 } = answerSlice.actions
 
 export default answerSlice.reducer
