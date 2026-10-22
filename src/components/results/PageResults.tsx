@@ -8,7 +8,7 @@ import RadarChart from './RadarChart';
 type Props = { page: QuestionnairePage; questionnaire: Questionnaire };
 
 function PageResults({ page, questionnaire }: Props) {
-   const answers = useSelector((state: RootState) => state.answers.answers);
+const answers = useSelector((state: RootState) => state.questionnaire.answers);
   const pageCategories = questionnaire.categories.filter(category => category.pageId === page.id);
 
   const categoryScores = pageCategories.map(category => ({
@@ -37,8 +37,8 @@ function PageResults({ page, questionnaire }: Props) {
     if (Array.isArray(answer)) {
       const question = questionnaire.questions[id];
       return answer.map(value => {
-        const option = question.options?.find(item => String(item.value) === value);
-        return option?.label ?? value;
+      const option = question.options?.find(item => String(item.value) === String(value));
+      return option?.label ?? String(value);
       }).join(', ');
     }
     return String(answer);
