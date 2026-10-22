@@ -2,11 +2,19 @@ import type { Questionnaire } from "../types/questionnaire";
 
 // it will Load a questionnaire from the JSON folder
 export async function loadQuestionnaire(
-  filename = "questionnaire.json"
+filename?: string
 ): Promise<Questionnaire> {
+const params = new URLSearchParams(window.location.search);
 
-  const response = await fetch(`/questionnaires/${filename}`);
+const selectedFile =
+  filename ||
+  params.get("questionnaire") ||
+  "questionnaire.json";
 
+if (!/^[a-zA-Z0-9_-]+\.json$/.test(selectedFile)) {
+  throw new Error("Invalid questionnaire filename");
+}
+const response = await fetch(`/questionnaires/${selectedFile}`);
   // It is a validation to check whether the file exist or not
   if (!response.ok) {
     throw new Error("Could not load the questionnaire");
