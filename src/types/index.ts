@@ -3,6 +3,7 @@
 // ============================================================================
 //TODO 1correct any typoes
 //TODO 2 check back if pushed code on github clashes with this ugh >:(
+//TODO 3 check back on all the types and such once all branches are merged
 export type QuestionType =
     | 'text'
     | 'slider'
@@ -72,4 +73,66 @@ export interface ResultsConfig{
         excludeUnanswered: boolean
         includeNestedQuestionsInParent: boolean
     }
+    radarChart: {
+        enabled: boolean
+        min: number
+        max: number
+    }
+    showNonScoredAnswers: boolean
+    allowPrint: boolean
+}
+
+// ============================================================================
+// QUESTIONNAIRE
+// ============================================================================
+
+export interface QuestionnaireConfig{
+    id: string
+    title: string
+    description: string
+    version: string
+    introduction: Introduction
+    pages: Page[]
+    categories: Category[]
+    questions: Record<string, Question>
+    results: ResultsConfig
+}
+
+// ============================================================================
+// ANSWERS
+// ============================================================================
+
+export type AnswerValue =
+    | string
+    | number
+    | string[]
+    | Date
+
+export interface Answers{
+    [questionId: string]: AnswerValue
+}
+
+// ============================================================================
+// REDUX
+// ============================================================================
+
+export interface QuestionnaireState{
+    config: QuestionnaireConfig | null
+    answers: Answers | null
+    currentPage: string
+}
+
+// ============================================================================
+// RADAR CHART
+// ============================================================================
+
+export interface RadarChartData{
+    category: string
+    value: number
+}
+
+export interface TextAnswerData{
+    questionId: string
+    questionText: string
+    answer: AnswerValue
 }
