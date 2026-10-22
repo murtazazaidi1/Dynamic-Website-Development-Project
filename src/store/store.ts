@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit"
-import questionnaireReducer from "./questionnaireSlice"
+import questionnaireReducer from "./answerSlice.ts"
 import { QuestionnaireState} from "../types"
 //TODO 1 correct typoes once all is done and edit comments to be more clear if needed
 //this creates adn configures the redux store

@@ -8,7 +8,7 @@ const initialState: QuestionnaireState = {
     currentPage: ""
 }
 
-const questionnaireSlice = createSlice({
+const answerSlice = createSlice({
     name: "questionnaire",
     initialState,
     reducers: {
@@ -44,6 +44,6 @@ const questionnaireSlice = createSlice({
 })
 
 export const { loadQuestionnaire, answerQuestion, navigateToPage, resetQuestionnaire
-} = questionnaireSlice.actions
+} = answerSlice.actions
 
-export default questionnaireSlice.reducer
+export default answerSlice.reducer

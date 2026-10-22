@@ -1,4 +1,4 @@
-import { RootState } from "./index"
+import { RootState } from "../store/store.ts"
 import { Question, Answers, Category, QuestionnaireConfig, RadarChartData, TextAnswerData} from "../types"
 
 // ============================================================================
