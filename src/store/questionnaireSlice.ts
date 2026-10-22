@@ -42,3 +42,8 @@ const questionnaireSlice = createSlice({
         },
     },
 })
+
+export const { loadQuestionnaire, answerQuestion, navigateToPage, resetQuestionnaire
+} = questionnaireSlice.actions
+
+export default questionnaireSlice.reducer
