@@ -182,3 +182,47 @@
     border-right-color: var(--border);
   }
 }
+
+
+@media print {
+  @page {
+    size: A4;
+    margin: 15mm;
+  }
+
+  body {
+    background: white !important;
+    color: black !important;
+  }
+
+  body:has(.final-report) #root > * {
+    visibility: hidden;
+  }
+
+  body:has(.final-report) .final-report,
+  body:has(.final-report) .final-report * {
+    visibility: visible;
+  }
+
+  .final-report {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .final-report .MuiPaper-root {
+    box-shadow: none !important;
+    padding: 0 !important;
+  }
+
+  .final-report .recharts-responsive-container {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+}
+
