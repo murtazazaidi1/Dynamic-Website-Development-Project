@@ -1,0 +1,74 @@
+{
+  "id": "workplace-wellbeing",
+  "title": "Workplace Wellbeing Survey",
+  "description": "A sample survey about employee experience, collaboration and workplace wellbeing.",
+  "version": "1.0",
+  "introduction": {
+    "heading": "Welcome to the Workplace Wellbeing Survey",
+    "text": "This sample questionnaire demonstrates that the survey application can load a completely different topic from JSON.",
+    "instructions": "Answer the questions on both pages. Numerical ratings use a scale from 1 to 5. Review your results on the final tab."
+  },
+  "pages": [
+    { "id": "work", "title": "Work Environment", "order": 1 },
+    { "id": "growth", "title": "Growth and Wellbeing", "order": 2 }
+  ],
+  "categories": [
+    { "id": "environment", "pageId": "work", "parentId": null, "title": "Work Environment", "order": 1 },
+    { "id": "collaboration", "pageId": "work", "parentId": "environment", "title": "Team Collaboration", "order": 1 },
+    { "id": "communication", "pageId": "work", "parentId": "collaboration", "title": "Communication", "order": 1 },
+    { "id": "facilities", "pageId": "work", "parentId": null, "title": "Facilities and Tools", "order": 2 },
+    { "id": "development", "pageId": "growth", "parentId": null, "title": "Professional Development", "order": 1 },
+    { "id": "wellbeing", "pageId": "growth", "parentId": null, "title": "Personal Wellbeing", "order": 2 }
+  ],
+  "questions": {
+    "w1": {
+      "categoryId": "environment", "type": "slider", "text": "How comfortable is your overall work environment?", "min": 1, "max": 5, "step": 1, "required": true, "scored": true, "order": 1
+    },
+    "w2": {
+      "categoryId": "collaboration", "type": "radio", "text": "How effectively does your team collaborate?", "options": [
+        { "label": "Poorly", "value": 1 }, { "label": "Sometimes well", "value": 3 }, { "label": "Very effectively", "value": 5 }
+      ], "required": true, "scored": true, "order": 1
+    },
+    "w3": {
+      "categoryId": "communication", "type": "select", "text": "How clear is communication from your manager?", "options": [
+        { "label": "Unclear", "value": 1 }, { "label": "Somewhat clear", "value": 3 }, { "label": "Very clear", "value": 5 }
+      ], "required": true, "scored": true, "order": 1
+    },
+    "w4": {
+      "categoryId": "communication", "type": "text", "text": "What would improve communication at work?", "placeholder": "Share your suggestion", "required": false, "scored": false, "order": 2
+    },
+    "w5": {
+      "categoryId": "facilities", "type": "multiselect", "text": "Which workplace resources do you use?", "options": [
+        { "label": "Meeting rooms", "value": "meeting-rooms" }, { "label": "Collaboration software", "value": "collaboration-software" }, { "label": "Quiet workspace", "value": "quiet-space" }, { "label": "Training resources", "value": "training" }
+      ], "required": false, "scored": false, "order": 1
+    },
+    "w6": {
+      "categoryId": "facilities", "type": "slider", "text": "How reliable are the tools you use?", "min": 1, "max": 5, "step": 1, "required": true, "scored": true, "order": 2
+    },
+    "w7": {
+      "categoryId": "development", "type": "select", "text": "How satisfied are you with learning opportunities?", "options": [
+        { "label": "Not satisfied", "value": 1 }, { "label": "Neutral", "value": 3 }, { "label": "Very satisfied", "value": 5 }
+      ], "required": true, "scored": true, "order": 1
+    },
+    "w8": {
+      "categoryId": "development", "type": "date", "text": "When did you last attend professional training?", "required": false, "scored": false, "order": 2
+    },
+    "w9": {
+      "categoryId": "wellbeing", "type": "radio", "text": "How manageable is your workload?", "options": [
+        { "label": "Not manageable", "value": 1 }, { "label": "Moderately manageable", "value": 3 }, { "label": "Very manageable", "value": 5 }
+      ], "required": true, "scored": true, "order": 1
+    },
+    "w10": {
+      "categoryId": "wellbeing", "type": "text", "text": "What would help improve your wellbeing at work?", "placeholder": "Your ideas", "required": false, "scored": false, "order": 2
+    }
+  },
+  "results": {
+    "title": "Workplace Wellbeing Results",
+    "calculation": {
+      "method": "average", "rounding": "nearest-integer", "excludeUnanswered": true, "includeNestedQuestionsInParent": true
+    },
+    "radarChart": { "enabled": true, "min": 0, "max": 5 },
+    "showNonScoredAnswers": true,
+    "allowPrint": true
+  }
+}
