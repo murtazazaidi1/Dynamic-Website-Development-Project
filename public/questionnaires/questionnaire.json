@@ -1,9 +1,8 @@
-
 {
   "id": "lab-student-feedback",
   "title": "LAB UAS Student Feedback Questionnaire",
   "description": "Share your experience studying at LAB University of Applied Sciences.",
-  "version": "1.0",
+  "version": "1.1",
   "introduction": {
     "heading": "Welcome to LAB Student Feedback",
     "text": "We would like to hear about your experience at LAB University of Applied Sciences.",
@@ -37,9 +36,16 @@
     {
       "id": "course-content",
       "pageId": "page1",
-      "parentId": "teaching-quality",
+      "parentId": null,
       "title": "Course Content",
-      "order": 1
+      "order": 2
+    },
+    {
+      "id": "learning-experience",
+      "pageId": "page1",
+      "parentId": null,
+      "title": "Learning Experience",
+      "order": 3
     },
     {
       "id": "campus-facilities",
@@ -51,9 +57,16 @@
     {
       "id": "study-spaces",
       "pageId": "page2",
-      "parentId": "campus-facilities",
+      "parentId": null,
       "title": "Study Spaces",
-      "order": 1
+      "order": 2
+    },
+    {
+      "id": "campus-environment",
+      "pageId": "page2",
+      "parentId": null,
+      "title": "Campus Environment",
+      "order": 3
     },
     {
       "id": "student-services",
@@ -65,9 +78,16 @@
     {
       "id": "academic-guidance",
       "pageId": "page3",
-      "parentId": "student-services",
+      "parentId": null,
       "title": "Academic Guidance",
-      "order": 1
+      "order": 2
+    },
+    {
+      "id": "student-wellbeing",
+      "pageId": "page3",
+      "parentId": null,
+      "title": "Student Wellbeing",
+      "order": 3
     }
   ],
   "questions": {
@@ -75,105 +95,144 @@
       "categoryId": "teaching-quality",
       "type": "slider",
       "text": "How satisfied are you with the overall teaching quality?",
-      "min": 1,
-      "max": 5,
-      "step": 1,
       "required": true,
       "scored": true,
-      "order": 1
+      "order": 1,
+      "min": 1,
+      "max": 5,
+      "step": 1
     },
     "q2": {
       "categoryId": "teaching-quality",
       "type": "radio",
       "text": "How clearly do teachers explain course topics?",
-      "options": [
-        { "label": "Not clearly", "value": 1 },
-        { "label": "Somewhat clearly", "value": 3 },
-        { "label": "Very clearly", "value": 5 }
-      ],
       "required": true,
       "scored": true,
-      "order": 2
+      "order": 2,
+      "options": [
+        {
+          "label": "Not clearly",
+          "value": 1
+        },
+        {
+          "label": "Somewhat clearly",
+          "value": 3
+        },
+        {
+          "label": "Very clearly",
+          "value": 5
+        }
+      ]
     },
     "q3": {
       "categoryId": "course-content",
       "type": "select",
       "text": "How relevant is the course content to your studies?",
-      "options": [
-        { "label": "Not relevant", "value": 1 },
-        { "label": "Somewhat relevant", "value": 3 },
-        { "label": "Very relevant", "value": 5 }
-      ],
       "required": true,
       "scored": true,
-      "order": 1
+      "order": 1,
+      "options": [
+        {
+          "label": "Not relevant",
+          "value": 1
+        },
+        {
+          "label": "Somewhat relevant",
+          "value": 3
+        },
+        {
+          "label": "Very relevant",
+          "value": 5
+        }
+      ]
     },
     "q4": {
       "categoryId": "course-content",
       "type": "text",
       "text": "What would you improve about the course content?",
-      "placeholder": "Write your feedback here",
       "required": false,
       "scored": false,
-      "order": 2
+      "order": 2,
+      "placeholder": "Write your feedback here"
     },
     "q5": {
       "categoryId": "campus-facilities",
       "type": "slider",
       "text": "How satisfied are you with the campus facilities?",
-      "min": 1,
-      "max": 5,
-      "step": 1,
       "required": true,
       "scored": true,
-      "order": 1
+      "order": 1,
+      "min": 1,
+      "max": 5,
+      "step": 1
     },
     "q6": {
       "categoryId": "campus-facilities",
       "type": "multiselect",
       "text": "Which campus facilities do you use regularly?",
-      "options": [
-        { "label": "Library", "value": "library" },
-        { "label": "Computer labs", "value": "computer-labs" },
-        { "label": "Cafeteria", "value": "cafeteria" },
-        { "label": "Study rooms", "value": "study-rooms" }
-      ],
       "required": false,
       "scored": false,
-      "order": 2
+      "order": 2,
+      "options": [
+        {
+          "label": "Library",
+          "value": "library"
+        },
+        {
+          "label": "Computer labs",
+          "value": "computer-labs"
+        },
+        {
+          "label": "Cafeteria",
+          "value": "cafeteria"
+        },
+        {
+          "label": "Study rooms",
+          "value": "study-rooms"
+        }
+      ]
     },
     "q7": {
       "categoryId": "study-spaces",
       "type": "radio",
       "text": "How suitable are the study spaces for your needs?",
-      "options": [
-        { "label": "Not suitable", "value": 1 },
-        { "label": "Moderately suitable", "value": 3 },
-        { "label": "Very suitable", "value": 5 }
-      ],
       "required": true,
       "scored": true,
-      "order": 1
+      "order": 2,
+      "options": [
+        {
+          "label": "Not suitable",
+          "value": 1
+        },
+        {
+          "label": "Moderately suitable",
+          "value": 3
+        },
+        {
+          "label": "Very suitable",
+          "value": 5
+        }
+      ]
     },
     "q8": {
       "categoryId": "study-spaces",
       "type": "text",
       "text": "What improvements would you suggest for study spaces?",
-      "placeholder": "Write your suggestions here",
       "required": false,
       "scored": false,
-      "order": 2
+      "order": 2,
+      "placeholder": "Write your suggestions here"
     },
     "q9": {
       "categoryId": "student-services",
       "type": "slider",
       "text": "How satisfied are you with student support services?",
-      "min": 1,
-      "max": 5,
-      "step": 1,
       "required": true,
       "scored": true,
-      "order": 1
+      "order": 1,
+      "min": 1,
+      "max": 5,
+      "step": 1
     },
     "q10": {
       "categoryId": "student-services",
@@ -187,23 +246,131 @@
       "categoryId": "academic-guidance",
       "type": "select",
       "text": "How helpful is the academic guidance you receive?",
-      "options": [
-        { "label": "Not helpful", "value": 1 },
-        { "label": "Somewhat helpful", "value": 3 },
-        { "label": "Very helpful", "value": 5 }
-      ],
       "required": true,
       "scored": true,
-      "order": 1
+      "order": 1,
+      "options": [
+        {
+          "label": "Not helpful",
+          "value": 1
+        },
+        {
+          "label": "Somewhat helpful",
+          "value": 3
+        },
+        {
+          "label": "Very helpful",
+          "value": 5
+        }
+      ]
     },
     "q12": {
       "categoryId": "academic-guidance",
       "type": "text",
       "text": "What additional academic support would you like?",
-      "placeholder": "Write your answer here",
       "required": false,
       "scored": false,
-      "order": 2
+      "order": 2,
+      "placeholder": "Write your answer here"
+    },
+    "q13": {
+      "categoryId": "learning-experience",
+      "type": "slider",
+      "text": "How satisfied are you with your overall learning experience?",
+      "required": true,
+      "scored": true,
+      "order": 1,
+      "min": 1,
+      "max": 5,
+      "step": 1
+    },
+    "q14": {
+      "categoryId": "learning-experience",
+      "type": "radio",
+      "text": "How well do learning activities help you understand the material?",
+      "required": true,
+      "scored": true,
+      "order": 2,
+      "options": [
+        {
+          "label": "Not well",
+          "value": 1
+        },
+        {
+          "label": "Moderately well",
+          "value": 3
+        },
+        {
+          "label": "Very well",
+          "value": 5
+        }
+      ]
+    },
+    "q15": {
+      "categoryId": "campus-environment",
+      "type": "slider",
+      "text": "How comfortable do you feel studying on campus?",
+      "required": true,
+      "scored": true,
+      "order": 1,
+      "min": 1,
+      "max": 5,
+      "step": 1
+    },
+    "q16": {
+      "categoryId": "campus-environment",
+      "type": "radio",
+      "text": "How would you rate the cleanliness and atmosphere of the campus?",
+      "required": true,
+      "scored": true,
+      "order": 2,
+      "options": [
+        {
+          "label": "Poor",
+          "value": 1
+        },
+        {
+          "label": "Average",
+          "value": 3
+        },
+        {
+          "label": "Excellent",
+          "value": 5
+        }
+      ]
+    },
+    "q17": {
+      "categoryId": "student-wellbeing",
+      "type": "slider",
+      "text": "How satisfied are you with the support available for student wellbeing?",
+      "required": true,
+      "scored": true,
+      "order": 1,
+      "min": 1,
+      "max": 5,
+      "step": 1
+    },
+    "q18": {
+      "categoryId": "student-wellbeing",
+      "type": "select",
+      "text": "How easy is it to find information about wellbeing services?",
+      "required": true,
+      "scored": true,
+      "order": 1,
+      "options": [
+        {
+          "label": "Difficult",
+          "value": 1
+        },
+        {
+          "label": "Somewhat easy",
+          "value": 3
+        },
+        {
+          "label": "Very easy",
+          "value": 5
+        }
+      ]
     }
   },
   "results": {
