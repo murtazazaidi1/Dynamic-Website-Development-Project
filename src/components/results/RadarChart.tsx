@@ -14,8 +14,21 @@ function RadarChart({ data, min = 0, max = 5 }: Props) {
       <ResponsiveContainer width="100%" height="100%">
         <RechartsRadarChart data={data} outerRadius="65%">
           <PolarGrid />
-          <PolarAngleAxis dataKey="name" />
-          <PolarRadiusAxis domain={[min, max]} allowDecimals={false} />
+          <PolarAngleAxis
+            dataKey="name"
+            tick={{ fill: "#64748B", fontSize: 14 }}
+            tickSize={20}
+          />
+          <PolarRadiusAxis
+            angle={90}
+            domain={[min, max]}
+            allowDecimals={false}
+            tick={{
+              fill: "#475569",
+              fontSize: 12,
+              fontWeight: 400
+            }}
+          />
           <Radar name="Score" dataKey="score" stroke="#1976d2"
             fill="#1976d2" fillOpacity={0.35} />
         </RechartsRadarChart>
