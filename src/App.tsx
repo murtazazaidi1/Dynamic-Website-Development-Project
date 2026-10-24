@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from "react";
-import { ThemeProvider, createTheme, CssBaseline, Box } from "@mui/material";
+import { ThemeProvider, createTheme, CssBaseline, Box, Button } from "@mui/material";
 import type { Questionnaire } from "./types/questionnaire";
 import { loadQuestionnaire } from "./services/questionnaireLoader";
 import QuestionnaireView from "./components/questionnaire/Questionnaire";
@@ -23,17 +23,32 @@ function App() {
   const [error, setError] = useState("");
   const [branding, setBranding] = useState<Branding | null>(null);
 
+  //logic so that the user can switch between the questionnaires and we can add more later if needed
+  const availableQuestionnaires = [
+      "questionnaire.json",
+      "second-questionnaire.json"
+  ]
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const handleNextQuestionnaire = () => {
+    setCurrentIndex((prev) => prev + 1)
+  }
+  const handlePreviousQuestionnaire = () => {
+    setCurrentIndex((prev) => prev - 1)
+  }
+
   // Loads the JSON when the page opens by user
   useEffect(() => {
-    loadQuestionnaire()
-    .then((data) => {
-      setQuestionnaire(data);
-      dispatch(setReduxQuestionnaire(data));
-    })
-      .catch(() => {
-        setError("Something went wrong while loading the questionnaire.");
-      });
-  }, [dispatch]);
+    const selectedFile = availableQuestionnaires[currentIndex]
+    loadQuestionnaire(selectedFile)
+        .then((data) => {
+          setQuestionnaire(data);
+          dispatch(setReduxQuestionnaire(data));
+        })
+        .catch(() => {
+          setError("Something went wrong while loading the questionnaire.");
+        });
+  }, [currentIndex, dispatch]);
+
 
   useEffect(() => {
   fetch("/questionnaires/branding.json")
@@ -50,7 +65,10 @@ function App() {
       console.error("Branding error:", error);
     });
 }, []);
-
+  //this makes it so as you switch questionnaires it goes to the top of the page
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [currentIndex])
 const theme = createTheme({
   palette: {
     primary: {
@@ -106,6 +124,11 @@ const theme = createTheme({
       <p>{questionnaire.introduction.instructions}</p>
 
 <QuestionnaireView questionnaire={questionnaire} />
+      {/* these are the buttons to switch between the questionnaires */}
+      <Box sx={{ mt: 4, display: 'flex', gap: 2, justifyContent: 'center'}}>
+        <Button variant='outlined' onClick={handlePreviousQuestionnaire} disabled={currentIndex === 0}>Previous Questionnaire</Button>
+        <Button variant='contained' onClick={handleNextQuestionnaire} disabled={currentIndex === availableQuestionnaires.length - 1}>Next Questionnaire</Button>
+      </Box>
         </Box>
   </ThemeProvider>
 );

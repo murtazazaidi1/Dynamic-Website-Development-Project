@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Box, Tab, Tabs, Button, Stack } from "@mui/material";
 import type { Questionnaire as QuestionnaireData } from "../../types/questionnaire";
 import QuestionnairePage from "./QuestionnairePage";
@@ -13,6 +13,11 @@ interface QuestionnaireProps {
 function Questionnaire({ questionnaire }: QuestionnaireProps) {
   const [tabIndex, setTabIndex] = useState(0);
   const dispatch = useDispatch();
+
+  //this is so that the pages refreshes to the top when switching pages/tabs so the user doesnt have to scroll up #lazyyyy
+  useEffect(() => {
+      window.scrollTo(0, 0);
+  }, [tabIndex])
 
   const pages = [...questionnaire.pages].sort((a, b) => a.order - b.order);
 
