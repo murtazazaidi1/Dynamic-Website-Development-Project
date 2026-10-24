@@ -11,6 +11,10 @@ function SliderQuestion({ question, value, onChange }: SliderQuestionProps) {
   const min = question.min ?? 0;
   const max = question.max ?? 10;
   const step = question.step ?? 1;
+  const marks = [];
+  for (let v = min; v <= max; v += step) {
+    marks.push({ value: v, label: String(v) });
+  }
 
   return (
     <>
@@ -18,7 +22,7 @@ function SliderQuestion({ question, value, onChange }: SliderQuestionProps) {
         min={min}
         max={max}
         step={step}
-        marks
+        marks={marks}
         valueLabelDisplay="auto"
         value={value ?? min}
         onChange={(_, newValue) => {
