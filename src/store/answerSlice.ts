@@ -15,6 +15,7 @@ const answerSlice = createSlice({
         //loads the questionnaire as seen in the name
             loadQuestionnaire: (state, action: PayloadAction<Questionnaire>) => {
                 state.config = action.payload
+                state.answers = {}
             //this sets the current page as the first one
             if(action.payload.pages.length > 0) {
                 state.currentPage = action.payload.pages[0].id

@@ -99,7 +99,15 @@ The default questionnaire can be opened at:
 
 The second questionnaire can be opened at:
 
-`http://localhost:5173/?questionnaire=second-questionnaire.json`
+### Switching Questionnaires
+
+The application includes two sample questionnaires: LAB UAS Student Feedback and Workplace Wellbeing.
+
+Users can switch between them using the **Next Questionnaire** and **Previous Questionnaire** buttons.
+
+When switching questionnaires, the application loads the selected JSON file, clears previous answers, and starts from the first page.
+
+Questionnaires are stored in the `public/questionnaires/` folder.
 
 Both files are located in the `public/questionnaires/` folder.
 

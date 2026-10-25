@@ -123,8 +123,11 @@ const theme = createTheme({
       <p>{questionnaire.introduction.text}</p>
       <p>{questionnaire.introduction.instructions}</p>
 
-<QuestionnaireView questionnaire={questionnaire} />
-      {/* these are the buttons to switch between the questionnaires */}
+      <QuestionnaireView
+        key={questionnaire.id}
+        questionnaire={questionnaire}
+      /> 
+     {/* these are the buttons to switch between the questionnaires */}
       <Box sx={{ mt: 4, display: 'flex', gap: 2, justifyContent: 'center'}}>
         <Button variant='outlined' onClick={handlePreviousQuestionnaire} disabled={currentIndex === 0}>Previous Questionnaire</Button>
         <Button variant='contained' onClick={handleNextQuestionnaire} disabled={currentIndex === availableQuestionnaires.length - 1}>Next Questionnaire</Button>

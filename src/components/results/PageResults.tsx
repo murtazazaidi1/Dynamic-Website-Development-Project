@@ -24,10 +24,13 @@ const answers = useSelector((state: RootState) => state.questionnaire.answers);
     }
   }
 
-  const otherQuestions = Object.entries(questionnaire.questions).filter(([, question]) => {
-    const belongsToPage = pageCategories.some(category => category.id === question.categoryId);
-    return !question.scored && belongsToPage;
-  });
+    const otherQuestions = Object.entries(questionnaire.questions).filter(([, question]) => {
+      const category = questionnaire.categories.find(
+        category => category.id === question.categoryId
+      );
+
+      return !question.scored && category?.pageId === page.id;
+    });
 
   function showAnswer(id: string) {
     const answer = answers[id];
