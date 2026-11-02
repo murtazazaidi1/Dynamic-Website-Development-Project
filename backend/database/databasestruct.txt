@@ -1,0 +1,594 @@
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `adate`
+--
+
+CREATE TABLE `adate` (
+  `aaid` int(11) NOT NULL,
+  `aaval` datetime NOT NULL,
+  `dummyid` int(11) NOT NULL,
+  `aaseqnum` int(11) DEFAULT NULL
+);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `adecimal`
+--
+
+CREATE TABLE `adecimal` (
+  `adid` int(11) NOT NULL,
+  `adval` double NOT NULL,
+  `dummyid` int(11) NOT NULL,
+  `adseqnum` int(11) DEFAULT NULL
+);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ainteger`
+--
+
+CREATE TABLE `ainteger` (
+  `aiid` int(11) NOT NULL,
+  `aival` int(11) NOT NULL,
+  `dummyid` int(11) NOT NULL,
+  `aiseqnum` int(11) DEFAULT NULL,
+  `aisubseqnum` int(11) NOT NULL
+);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `atext`
+--
+
+CREATE TABLE `atext` (
+  `atid` int(11) NOT NULL,
+  `atval` text NOT NULL,
+  `dummyid` int(11) NOT NULL,
+  `atseqnum` int(11) DEFAULT NULL
+);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `company`
+--
+
+CREATE TABLE `company` (
+  `cid` char(10) NOT NULL,
+  `name` char(75) NOT NULL,
+  `url` varchar(1024) DEFAULT NULL,
+  `email` varchar(1024) DEFAULT NULL,
+  `phone` varchar(75) DEFAULT NULL
+);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `fchoice`
+--
+
+CREATE TABLE `fchoice` (
+  `dummyid` int(11) NOT NULL,
+  `fcid` int(11) NOT NULL,
+  `fclabel` text NOT NULL,
+  `fcseqnum` int(11) NOT NULL,
+  `fcoutvalid` int(11) NOT NULL,
+  `fcpresentation` enum('RADIO','CHECKBOX','HOVERDROPDOWN','BOXDROPDOWN') NOT NULL DEFAULT 'RADIO',
+  `fcsubseqnum` int(11) NOT NULL DEFAULT 0
+);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `fslider`
+--
+
+CREATE TABLE `fslider` (
+  `dummyid` int(11) NOT NULL,
+  `fsid` int(11) NOT NULL,
+  `fsstoreas` enum('INTEGER','DECIMAL','INTEGER_POS','DECIMAL_POS','INTEGER_NEG','DECIMAL_NEG') NOT NULL,
+  `fslabel` text NOT NULL,
+  `fsrangeb` double NOT NULL,
+  `fsrangee` double NOT NULL
+);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ftext`
+--
+
+CREATE TABLE `ftext` (
+  `dummyid` int(11) NOT NULL,
+  `ftid` int(11) NOT NULL,
+  `ftlabel` text DEFAULT NULL,
+  `ftstoreas` enum('INTEGER','DECIMAL','INTEGER_POS','DECIMAL_POS','INTEGER_NEG','DECIMAL_NEG','TEXT','DATE') NOT NULL
+);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `fxy`
+--
+
+CREATE TABLE `fxy` (
+  `dummyid` int(11) NOT NULL,
+  `fxyxlabel` text NOT NULL,
+  `fxyylabel` text NOT NULL,
+  `fxyhelptextsid` int(11) DEFAULT NULL,
+  `fxystyle` enum('COORD','BOX','SLIDERS') NOT NULL DEFAULT 'COORD',
+  `fxyxrangeb` double NOT NULL,
+  `fxyxrangee` double NOT NULL,
+  `fxyyrangeb` double NOT NULL,
+  `fxyyrangee` double NOT NULL,
+  `fxystoreas` enum('INTEGER','DECIMAL','INTEGER_POS','DECIMAL_POS','INTEGER_NEG','DECIMAL_NEG') NOT NULL,
+  `fxyid` int(11) DEFAULT NULL,
+  `fxyxdesc` varchar(255) NOT NULL,
+  `fxyxmintext` varchar(255) NOT NULL,
+  `fxyxmaxtext` varchar(255) NOT NULL,
+  `fxyydesc` varchar(255) NOT NULL,
+  `fxyymintext` varchar(255) NOT NULL,
+  `fxyymaxtext` varchar(255) NOT NULL
+);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `fxyhelptexts`
+--
+
+CREATE TABLE `fxyhelptexts` (
+  `fxyhid` int(11) NOT NULL,
+  `fxyhtopleft` text NOT NULL,
+  `fxyhtopright` text NOT NULL,
+  `fxyhbotleft` text NOT NULL,
+  `fxyhbotright` text NOT NULL
+);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `qanswer`
+--
+
+CREATE TABLE `qanswer` (
+  `aid` int(11) NOT NULL,
+  `iid` int(11) DEFAULT NULL,
+  `qfid` int(11) NOT NULL
+);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `qfield`
+--
+
+CREATE TABLE `qfield` (
+  `fid` int(11) NOT NULL,
+  `gid` int(11) DEFAULT NULL,
+  `fseqnum` int(11) DEFAULT NULL,
+  `ftitle` varchar(4096) NOT NULL,
+  `root` int(11) DEFAULT NULL
+);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `qgroup`
+--
+
+CREATE TABLE `qgroup` (
+  `gid` int(11) NOT NULL,
+  `pid` int(11) DEFAULT NULL,
+  `gseqnum` int(11) DEFAULT NULL,
+  `gtitle` varchar(4096) NOT NULL,
+  `hostgid` int(11) DEFAULT NULL
+);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `qinstance`
+--
+
+CREATE TABLE `qinstance` (
+  `iid` int(11) NOT NULL,
+  `date` datetime DEFAULT current_timestamp(),
+  `wip` tinyint(1) DEFAULT NULL,
+  `uid` int(11) DEFAULT NULL,
+  `qid` int(11) DEFAULT NULL
+);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `qpage`
+--
+
+CREATE TABLE `qpage` (
+  `pid` int(11) NOT NULL,
+  `ptitle` varchar(4096) NOT NULL,
+  `pseqnum` int(11) DEFAULT NULL,
+  `qid` int(11) DEFAULT NULL,
+  `pgeneralinline` text NOT NULL,
+  `pgeneralfile` varchar(255) NOT NULL,
+  `pscope` enum('MAINUSER','ALL','','') NOT NULL DEFAULT 'ALL'
+);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `questionnaire`
+--
+
+CREATE TABLE `questionnaire` (
+  `qid` int(11) NOT NULL,
+  `predecessor` int(11) DEFAULT NULL,
+  `description` varchar(1024) DEFAULT NULL,
+  `root` int(11) DEFAULT NULL,
+  `active` tinyint(1) NOT NULL DEFAULT 0
+);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user`
+--
+
+CREATE TABLE `user` (
+  `uid` int(11) NOT NULL,
+  `gname` char(50) DEFAULT NULL,
+  `sname` char(50) DEFAULT NULL,
+  `phone` char(20) DEFAULT NULL,
+  `status` int(11) NOT NULL DEFAULT 2,
+  `email` varchar(128) DEFAULT NULL,
+  `cid` char(10) NOT NULL,
+  `hash` char(61) DEFAULT NULL,
+  `invitation` text DEFAULT NULL
+);
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `adate`
+--
+ALTER TABLE `adate`
+  ADD PRIMARY KEY (`dummyid`),
+  ADD KEY `val` (`aaval`),
+  ADD KEY `aaid` (`aaid`) USING BTREE;
+
+--
+-- Indexes for table `adecimal`
+--
+ALTER TABLE `adecimal`
+  ADD PRIMARY KEY (`dummyid`),
+  ADD KEY `val` (`adval`),
+  ADD KEY `adid` (`adid`);
+
+--
+-- Indexes for table `ainteger`
+--
+ALTER TABLE `ainteger`
+  ADD PRIMARY KEY (`dummyid`),
+  ADD KEY `val` (`aival`),
+  ADD KEY `aiid` (`aiid`) USING BTREE;
+
+--
+-- Indexes for table `atext`
+--
+ALTER TABLE `atext`
+  ADD PRIMARY KEY (`dummyid`),
+  ADD KEY `atid` (`atid`) USING BTREE;
+ALTER TABLE `atext` ADD FULLTEXT KEY `val` (`atval`);
+
+--
+-- Indexes for table `company`
+--
+ALTER TABLE `company`
+  ADD PRIMARY KEY (`cid`);
+ALTER TABLE `company` ADD FULLTEXT KEY `cname_ind` (`name`);
+
+--
+-- Indexes for table `fchoice`
+--
+ALTER TABLE `fchoice`
+  ADD PRIMARY KEY (`dummyid`),
+  ADD KEY `fcid` (`fcid`);
+
+--
+-- Indexes for table `fslider`
+--
+ALTER TABLE `fslider`
+  ADD PRIMARY KEY (`dummyid`),
+  ADD KEY `fsliderid` (`fsid`);
+
+--
+-- Indexes for table `ftext`
+--
+ALTER TABLE `ftext`
+  ADD PRIMARY KEY (`dummyid`),
+  ADD KEY `ftextid` (`ftid`);
+
+--
+-- Indexes for table `fxy`
+--
+ALTER TABLE `fxy`
+  ADD PRIMARY KEY (`dummyid`),
+  ADD KEY `fxyid` (`fxyid`),
+  ADD KEY `fxyhelptextsid` (`fxyhelptextsid`);
+
+--
+-- Indexes for table `fxyhelptexts`
+--
+ALTER TABLE `fxyhelptexts`
+  ADD PRIMARY KEY (`fxyhid`);
+
+--
+-- Indexes for table `qanswer`
+--
+ALTER TABLE `qanswer`
+  ADD PRIMARY KEY (`aid`),
+  ADD UNIQUE KEY `iid_2` (`iid`,`qfid`),
+  ADD KEY `iid` (`iid`),
+  ADD KEY `qfid` (`qfid`);
+
+--
+-- Indexes for table `qfield`
+--
+ALTER TABLE `qfield`
+  ADD PRIMARY KEY (`fid`),
+  ADD UNIQUE KEY `fid` (`fid`,`fseqnum`),
+  ADD KEY `gid` (`gid`),
+  ADD KEY `root` (`root`);
+
+--
+-- Indexes for table `qgroup`
+--
+ALTER TABLE `qgroup`
+  ADD PRIMARY KEY (`gid`),
+  ADD UNIQUE KEY `gid` (`gid`,`gseqnum`),
+  ADD KEY `pid` (`pid`);
+
+--
+-- Indexes for table `qinstance`
+--
+ALTER TABLE `qinstance`
+  ADD PRIMARY KEY (`iid`),
+  ADD KEY `uid` (`uid`) USING BTREE,
+  ADD KEY `qid` (`qid`) USING BTREE;
+
+--
+-- Indexes for table `qpage`
+--
+ALTER TABLE `qpage`
+  ADD PRIMARY KEY (`pid`),
+  ADD UNIQUE KEY `pid` (`pid`,`pseqnum`),
+  ADD KEY `qid` (`qid`);
+
+--
+-- Indexes for table `questionnaire`
+--
+ALTER TABLE `questionnaire`
+  ADD PRIMARY KEY (`qid`),
+  ADD KEY `predecessor` (`predecessor`),
+  ADD KEY `root` (`root`);
+
+--
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`uid`),
+  ADD UNIQUE KEY `email` (`email`),
+  ADD KEY `cid` (`cid`);
+ALTER TABLE `user` ADD FULLTEXT KEY `gname` (`gname`,`sname`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `adate`
+--
+ALTER TABLE `adate`
+  MODIFY `dummyid` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `adecimal`
+--
+ALTER TABLE `adecimal`
+  MODIFY `dummyid` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `ainteger`
+--
+ALTER TABLE `ainteger`
+  MODIFY `dummyid` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `atext`
+--
+ALTER TABLE `atext`
+  MODIFY `dummyid` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `fchoice`
+--
+ALTER TABLE `fchoice`
+  MODIFY `dummyid` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `fslider`
+--
+ALTER TABLE `fslider`
+  MODIFY `dummyid` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `ftext`
+--
+ALTER TABLE `ftext`
+  MODIFY `dummyid` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `fxy`
+--
+ALTER TABLE `fxy`
+  MODIFY `dummyid` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `fxyhelptexts`
+--
+ALTER TABLE `fxyhelptexts`
+  MODIFY `fxyhid` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `qanswer`
+--
+ALTER TABLE `qanswer`
+  MODIFY `aid` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `qfield`
+--
+ALTER TABLE `qfield`
+  MODIFY `fid` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `qgroup`
+--
+ALTER TABLE `qgroup`
+  MODIFY `gid` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `qinstance`
+--
+ALTER TABLE `qinstance`
+  MODIFY `iid` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `qpage`
+--
+ALTER TABLE `qpage`
+  MODIFY `pid` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `questionnaire`
+--
+ALTER TABLE `questionnaire`
+  MODIFY `qid` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `adate`
+--
+ALTER TABLE `adate`
+  ADD CONSTRAINT `adate_ibfk_1` FOREIGN KEY (`aaid`) REFERENCES `qanswer` (`aid`);
+
+--
+-- Constraints for table `adecimal`
+--
+ALTER TABLE `adecimal`
+  ADD CONSTRAINT `adecimal_ibfk_1` FOREIGN KEY (`adid`) REFERENCES `qanswer` (`aid`);
+
+--
+-- Constraints for table `ainteger`
+--
+ALTER TABLE `ainteger`
+  ADD CONSTRAINT `ainteger_ibfk_1` FOREIGN KEY (`aiid`) REFERENCES `qanswer` (`aid`);
+
+--
+-- Constraints for table `atext`
+--
+ALTER TABLE `atext`
+  ADD CONSTRAINT `atext_ibfk_1` FOREIGN KEY (`atid`) REFERENCES `qanswer` (`aid`);
+
+--
+-- Constraints for table `fchoice`
+--
+ALTER TABLE `fchoice`
+  ADD CONSTRAINT `fchoice_ibfk_1` FOREIGN KEY (`fcid`) REFERENCES `qfield` (`fid`);
+
+--
+-- Constraints for table `fslider`
+--
+ALTER TABLE `fslider`
+  ADD CONSTRAINT `fslider_ibfk_1` FOREIGN KEY (`fsid`) REFERENCES `qfield` (`fid`);
+
+--
+-- Constraints for table `ftext`
+--
+ALTER TABLE `ftext`
+  ADD CONSTRAINT `ftext_ibfk_1` FOREIGN KEY (`ftid`) REFERENCES `qfield` (`fid`);
+
+--
+-- Constraints for table `fxy`
+--
+ALTER TABLE `fxy`
+  ADD CONSTRAINT `fxy_ibfk_1` FOREIGN KEY (`fxyid`) REFERENCES `qfield` (`fid`),
+  ADD CONSTRAINT `fxy_ibfk_2` FOREIGN KEY (`fxyhelptextsid`) REFERENCES `fxyhelptexts` (`fxyhid`) ON DELETE SET NULL ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `qanswer`
+--
+ALTER TABLE `qanswer`
+  ADD CONSTRAINT `qanswer_ibfk_1` FOREIGN KEY (`iid`) REFERENCES `qinstance` (`iid`),
+  ADD CONSTRAINT `qanswer_ibfk_2` FOREIGN KEY (`qfid`) REFERENCES `qfield` (`fid`);
+
+--
+-- Constraints for table `qfield`
+--
+ALTER TABLE `qfield`
+  ADD CONSTRAINT `qfield_ibfk_1` FOREIGN KEY (`gid`) REFERENCES `qgroup` (`gid`),
+  ADD CONSTRAINT `qfield_ibfk_2` FOREIGN KEY (`root`) REFERENCES `qfield` (`fid`);
+
+--
+-- Constraints for table `qgroup`
+--
+ALTER TABLE `qgroup`
+  ADD CONSTRAINT `qgroup_ibfk_1` FOREIGN KEY (`pid`) REFERENCES `qpage` (`pid`),
+  ADD CONSTRAINT `qgroup_ibfk_2` FOREIGN KEY (`hostgid`) REFERENCES `qgroup` (`gid`);
+
+
+--
+-- Constraints for table `qinstance`
+--
+ALTER TABLE `qinstance`
+  ADD CONSTRAINT `qinstance_ibfk_1` FOREIGN KEY (`uid`) REFERENCES `user` (`uid`),
+  ADD CONSTRAINT `qinstance_ibfk_2` FOREIGN KEY (`qid`) REFERENCES `questionnaire` (`qid`);
+
+--
+-- Constraints for table `qpage`
+--
+ALTER TABLE `qpage`
+  ADD CONSTRAINT `qpage_ibfk_1` FOREIGN KEY (`qid`) REFERENCES `questionnaire` (`qid`);
+
+--
+-- Constraints for table `questionnaire`
+--
+ALTER TABLE `questionnaire`
+  ADD CONSTRAINT `questionnaire_ibfk_1` FOREIGN KEY (`predecessor`) REFERENCES `questionnaire` (`qid`),
+  ADD CONSTRAINT `questionnaire_ibfk_2` FOREIGN KEY (`root`) REFERENCES `questionnaire` (`qid`);
+
+--
+-- Constraints for table `user`
+--
+ALTER TABLE `user`
+  ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`cid`) REFERENCES `company` (`cid`);
+COMMIT;
