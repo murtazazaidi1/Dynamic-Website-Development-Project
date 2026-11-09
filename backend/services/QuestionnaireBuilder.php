@@ -56,6 +56,23 @@ class QuestionnaireBuilder{
     return $stmt->fetch() ?: null;
     }
 
+    private function getPages(int $questionnaireId): array
+    {
+        $stmt = $this->db->prepare("
+        SELECT pid, ptitle, pseqnum
+        FROM qpage
+        WHERE qid = :qid
+        ORDER BY pseqnum ASC");
+
+        $stmt->execute(['qid' => $questionnaireId]);
+        $pages = [];
+
+        foreach ($stmt->fetchAll() as $row) {
+        $pages[] = ['id' => "page-{$row['pid']}", 'title' => $row['ptitle'], 'order' => $row['pseqnum']];
+        }
+        return $pages;
+    }
+
 }
 
 ?>
