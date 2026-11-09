@@ -17,6 +17,7 @@ class QuestionnaireBuilder{
         }
         $pages = $this->getPages($questionnaireId);
         $categories = $this->getCategories($pages);
+
         return[
         'id' => "questionnaire-{$questionnaireId}",
         'title' => $questionnaire['description'] ?? "Questionnaire {$questionnaireId}",
@@ -41,6 +42,18 @@ class QuestionnaireBuilder{
             'allowPrint' => true
                 ]
             ];
+    }
+
+    private function getQuestionnaireInfo(int $questionnaireId): ?array
+    {
+    //this is to prevent sql injections here :qid is just a placeholder for now
+    //this was suggested by AI and it is a very important thing to have tbh
+    $stmt = $this->db->prepare("
+    SELECT qid, description, active
+    FROM questionnaire
+    WHERE qid = :qid");
+    $stmt->execute(['qid' => $questionnaireId]);
+    return $stmt->fetch() ?: null;
     }
 
 }
