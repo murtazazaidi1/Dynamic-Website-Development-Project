@@ -121,4 +121,31 @@ class QuestionnaireBuilder{
 
 }
 
+//i asked AI for some way to test this so whoever is able to test this live on XAMPP just un comment the code below
+/*
+ * WHY: This section allows the file to be run directly for testing.
+ * It checks for a query parameter (?qid=9001) and outputs the JSON.
+ *
+ * WHAT: If ?qid is provided, use that ID. Otherwise, default to 9001 for testing.
+if (isset($_GET['qid'])) {
+    //* User provided a questionnaire ID via URL parameter
+    $questionnaireId = (int)$_GET['qid'];
+    $builder = new QuestionnaireBuilder();
+
+    try {
+        $builder->outputAsJson($questionnaireId);
+    } catch (Exception $e) {
+        // *WHY: Catch errors and return them as JSON with HTTP 500 status
+        // *This makes debugging easier for API consumers
+        http_response_code(500);
+        echo json_encode(['error' => $e->getMessage()]);
+    }
+} else {
+    // *Default: use questionnaire 9001 for testing
+    // *WHY: Provides a default behavior for quick testing without parameters
+    $builder = new QuestionnaireBuilder();
+    $builder->outputAsJson(9001);
+}
+*/
+
 ?>
