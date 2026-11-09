@@ -55,7 +55,7 @@ class QuestionnaireBuilder{
     $stmt->execute(['qid' => $questionnaireId]);
     return $stmt->fetch() ?: null;
     }
-
+    //this retrieves all pages ordered by sequence nbr
     private function getPages(int $questionnaireId): array
     {
         $stmt = $this->db->prepare("
@@ -71,6 +71,52 @@ class QuestionnaireBuilder{
         $pages[] = ['id' => "page-{$row['pid']}", 'title' => $row['ptitle'], 'order' => $row['pseqnum']];
         }
         return $pages;
+    }
+    //this retrieves all teh categories for given pages and ordered by sequence nbr
+    private function getCategories(array $pages): array
+    {
+        if (empty($pages))
+        {
+        return [];
+        }
+        $pageIds = array_map(fn($p) => (int)str_replace('page-', '', $p['id']), $pages);
+        $placeholders = implode(',', array_fill(0, count($pageIds), '?'));
+        $stmt = $this->db->prepare("
+        SELECT gid, pid, gseqnum, gtitle, hostgid
+        FROM qgroup
+        WHERE pid IN ($placeholders)
+        ORDER BY gseqnum ASC");
+
+        $stmt->execute($pageIds);
+        $categories = [];
+        $pageIdMap = [];
+
+        foreach($pages as $page){
+        $dbPid = (int)str_replace('page-', '', $page['id']);
+        $pageIdMap[$dbPid] = $page['id'];
+        }
+        foreach($stmt->fetchAll() as $row){
+        $pageId = $pageIdMap[$row['pid']] ?? null;
+        $parentId = $row['hostgid'] ? "category-{$row['hostgid']}" : null;
+        //this maps the db fields into the JSON fields
+        $categories[] = [
+             'id' => "category-{$row['gid']}",
+             'pageId' => $pageId,
+             'parentId' => $parentId,
+             'title' => $row['gtitle'],
+             'order' => $row['gseqnum']
+              ];
+        }
+        return $categories;
+    }
+    //as seen from teh function name, this outputs the questionnaire in json format
+    public function outputAsJson(int $questionnaireId): void
+    {
+    header('Content-Type: application/json');
+    $questionnaire = $this->buildQuestionnaire($questionnaireId);
+    //from playing around the net and with AI, i found these two JSON thingies
+    //the pretty print makes it readable and the other makes sure non ASCII chars arent escaped
+    echo json_encode($questionnaire, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
     }
 
 }
