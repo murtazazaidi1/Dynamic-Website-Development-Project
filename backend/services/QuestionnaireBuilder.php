@@ -1,6 +1,6 @@
 <?php
 //this makes sure the connection file is only used once
-require_once __DIR__ . '/database/db.php';
+require_once __DIR__ . '/config/db.php';
 
 class QuestionnaireBuilder{
     private PDO $db;
@@ -14,6 +14,9 @@ class QuestionnaireBuilder{
        //error in case we cant find the questionnaire or some other error
         if(!$questionnaire){
             throw new Exception("Questionnaire not found");
+        }
+        if ($questionnaireId < 1){
+            throw new InvalidArgumentException("Questionnaire ID must be positive");
         }
         $pages = $this->getPages($questionnaireId);
         $categories = $this->getCategories($pages);
@@ -33,7 +36,7 @@ class QuestionnaireBuilder{
                 'method' => 'average',
                 'rounding' => 'nearest-integer',
                 'excludeUnanswered' => true,
-                'includeNestedQuestionIsParent' => true ],
+                'includeNestedQuestionsInParent' => true ],
             'radarChart' => [
                 'enabled' => true,
                 'min' => 0,
