@@ -32,9 +32,10 @@ class QuestionBuilder
         foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $row) {
             $fid = (int) $row['fid'];
 
-            // fchoice (Linh) and fxy are not handled yet
+            // fxy is not handled yet
             $details = $this->getTextQuestion($fid)
-                ?? $this->getSliderQuestion($fid);
+                ?? $this->getSliderQuestion($fid)
+                ?? $this->getChoiceQuestion($fid);
 
             if ($details === null) {
                 continue;
@@ -101,6 +102,46 @@ class QuestionBuilder
             'min' => (float) $row['fsrangeb'],
             'max' => (float) $row['fsrangee'],
             'step' => 1
+        ];
+    }
+
+    private function getChoiceQuestion(int $fid): ?array
+    {
+        $stmt = $this->db->prepare(
+            "SELECT fclabel, fcoutvalid, fcpresentation
+             FROM fchoice
+             WHERE fcid = :id
+             ORDER BY fcseqnum ASC, dummyid ASC"
+        );
+
+        $stmt->execute(['id' => $fid]);
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        if (!$rows) {
+            return null;
+        }
+
+        $types = [
+            'RADIO' => 'radio',
+            'CHECKBOX' => 'multiselect',
+            'BOXDROPDOWN' => 'select',
+            'HOVERDROPDOWN' => 'select'
+        ];
+        $type = $types[$rows[0]['fcpresentation']];
+
+        $options = [];
+
+        foreach ($rows as $row) {
+            $options[] = [
+                'label' => $row['fclabel'],
+                'value' => (int) $row['fcoutvalid']
+            ];
+        }
+
+        return [
+            'type' => $type,
+            'scored' => $type !== 'multiselect',
+            'options' => $options
         ];
     }
 }
