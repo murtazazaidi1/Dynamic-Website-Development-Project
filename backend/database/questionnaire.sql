@@ -1,8 +1,5 @@
---Questionnaire ID 1001;
-/* also import this file into the database to create the questionnaire structure */
 START TRANSACTION;
 
--- LAB UAS Student Feedback Questionnaire
 INSERT INTO `questionnaire` (`qid`, `predecessor`, `description`, `root`, `active`) VALUES (1001, NULL, 'LAB UAS Student Feedback Questionnaire', NULL, 1);
 INSERT INTO `qpage` (`pid`, `ptitle`, `pseqnum`, `qid`, `pgeneralinline`, `pgeneralfile`, `pscope`) VALUES (1001101, 'Teaching and Learning', 1, 1001, '', '', 'ALL');
 INSERT INTO `qpage` (`pid`, `ptitle`, `pseqnum`, `qid`, `pgeneralinline`, `pgeneralfile`, `pscope`) VALUES (1001102, 'Campus and Facilities', 2, 1001, '', '', 'ALL');
