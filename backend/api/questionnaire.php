@@ -1,14 +1,16 @@
 
 <?php
 
-// first it will connect to our database
+// Connect to the database and load the team builders
 require_once __DIR__ . "/../config/db.php";
+require_once __DIR__ . "/../services/QuestionnaireBuilder.php";
+require_once __DIR__ . "/../services/QuestionBuilder.php";
 
-// it will return data in JSON format
-header("Content-Type: application/json");
+// Return data in JSON format
+header("Content-Type: application/json; charset=utf-8");
 
 try {
-    // to get the questionnaire ID from the URL
+    // Get questionnaire ID from the URL
     $id = filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT);
 
     if (!$id || $id < 1) {
@@ -17,27 +19,33 @@ try {
         exit;
     }
 
+    // Connect to MySQL
     $db = getDatabaseConnection();
 
-    // to find the questionnaire
-    $sql = "SELECT qid, description, active
-            FROM questionnaire
-            WHERE qid = :id";
+    // Henri's builder: questionnaire, pages and categories
+    $questionnaire = buildQuestionnaire($db, $id);
 
-    $stmt = $db->prepare($sql);
-    $stmt->execute(["id" => $id]);
+    // Linh and Tu's builder: questions and answer options
+    $questionnaire["questions"] = buildQuestionsForCategories(
+        $db,
+        $questionnaire["categories"]
+    );
 
-    $questionnaire = $stmt->fetch();
+    // Return complete questionnaire JSON
+    echo json_encode(
+        $questionnaire,
+        JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE
+    );
 
-    if (!$questionnaire) {
-        http_response_code(404);
-        echo json_encode(["error" => "Questionnaire not found"]);
-        exit;
-    }
-
-    echo json_encode($questionnaire);
+} catch (InvalidArgumentException $e) {
+    http_response_code(400);
+    echo json_encode(["error" => $e->getMessage()]);
 
 } catch (PDOException $e) {
     http_response_code(500);
     echo json_encode(["error" => "Database error"]);
+
+} catch (Throwable $e) {
+    http_response_code(500);
+    echo json_encode(["error" => "Questionnaire generation failed"]);
 }
