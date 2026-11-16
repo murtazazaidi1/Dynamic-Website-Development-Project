@@ -1,0 +1,25 @@
+
+{
+  "version": "1.0",
+  "introduction": {
+    "heading": "Welcome to LAB Student Feedback",
+    "text": "We would like to hear about your experience at LAB University of Applied Sciences.",
+    "instructions": "Please answer the questions based on your own experience."
+  },
+  "results": {
+    "title": "Your LAB UAS Feedback Results",
+    "calculation": {
+      "method": "average",
+      "rounding": "nearest-integer",
+      "excludeUnanswered": true,
+      "includeNestedQuestionsInParent": true
+    },
+    "radarChart": {
+      "enabled": true,
+      "min": 0,
+      "max": 5
+    },
+    "showNonScoredAnswers": true,
+    "allowPrint": true
+  }
+}
