@@ -83,10 +83,10 @@ class QuestionBuilder
     private function getSliderQuestion(int $fid): ?array
     {
         $stmt = $this->db->prepare(
-            "SELECT fsrangeb, fsrangee
-             FROM fslider
-             WHERE fsid = :id
-             LIMIT 1"
+            "SELECT fsrangeb, fsrangee, fsstoreas
+            FROM fslider
+            WHERE fsid = :id
+            LIMIT 1"
         );
 
         $stmt->execute(['id' => $fid]);
@@ -96,13 +96,19 @@ class QuestionBuilder
             return null;
         }
 
+        if ((float) $row['fsrangee'] < (float) $row['fsrangeb']) {
+    throw new RuntimeException(
+        "Invalid slider range for field $fid"
+    );
+}
+
         return [
             'type' => 'slider',
-            'scored' => true,
+            'scored' => false,
             'min' => (float) $row['fsrangeb'],
             'max' => (float) $row['fsrangee'],
-            'step' => 1
-        ];
+            'step' => str_starts_with($row['fsstoreas'], 'INTEGER') ? 1 : 0.1  
+          ];
     }
 
     private function getChoiceQuestion(int $fid): ?array
@@ -127,7 +133,23 @@ class QuestionBuilder
             'BOXDROPDOWN' => 'select',
             'HOVERDROPDOWN' => 'select'
         ];
-        $type = $types[$rows[0]['fcpresentation']];
+       $presentation = $rows[0]['fcpresentation'];
+
+        if (!isset($types[$presentation])) {
+            throw new RuntimeException(
+                "Unsupported choice type: $presentation"
+            );
+        }
+
+        $type = $types[$presentation];
+
+        foreach ($rows as $row) {
+    if ($row['fcpresentation'] !== $presentation) {
+        throw new RuntimeException(
+            "Mixed choice presentation types for field $fid"
+        );
+    }
+}
 
         $options = [];
 
@@ -140,8 +162,19 @@ class QuestionBuilder
 
         return [
             'type' => $type,
-            'scored' => $type !== 'multiselect',
+            'scored' => false,
             'options' => $options
         ];
     }
+}
+
+function buildQuestionsForCategories(PDO $db, array $categories): array
+{
+    $groupIds = array_map(
+        fn(array $category): int => (int) $category['id'],
+        $categories
+    );
+
+    $builder = new QuestionBuilder($db);
+    return $builder->buildQuestions($groupIds);
 }
