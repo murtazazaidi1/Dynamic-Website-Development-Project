@@ -1,3 +1,12 @@
+-- LAB UAS Student Feedback Questionnaire
+-- Questionnaire ID: 1001
+-- IMPORTANT:
+-- Import the teacher's database schema before this file.
+-- Select the correct database in phpMyAdmin.
+
+START TRANSACTION;
+
+
 START TRANSACTION;
 
 INSERT INTO `questionnaire` (`qid`, `predecessor`, `description`, `root`, `active`) VALUES (1001, NULL, 'LAB UAS Student Feedback Questionnaire', NULL, 1);
