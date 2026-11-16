@@ -1,174 +1,78 @@
 # Online Questionnaire Tool
 
-## About the Project
+This project was developed for the Dynamic Website Development course at LAB University of Applied Sciences.
 
-This project was developed for our Dynamic Website Development course at LAB University of Applied Sciences.
+The application uses React, TypeScript, PHP, and MySQL to load and display questionnaires dynamically.
 
-We are a team of five students, and our task is to create an online questionnaire application using React and TypeScript.
+## Requirements
 
-The idea is to make a questionnaire tool that can work with different JSON files. Instead of writing questions directly into the React code, we load them from JSON. This means we can change the questions, pages, and categories without changing the application's components.
+Before running the project, make sure you have installed:
 
-For Phase 1, we focused on building the frontend and making sure the questionnaire works with different configurations.
+- Node.js and npm
+- PHP
+- MySQL (XAMPP recommended)
 
-## Technologies We Used
+## How to Run the Project
 
-- React and TypeScript
-- Vite
-- Material UI
-- Redux Toolkit
-- Recharts
-- JSON
-- Git and GitHub
+### 1. Install Dependencies
 
-## What Our Application Can Do
-
-### Different Question Types
-
-Our questionnaire supports six types of questions:
-
-- Text input
-- Radio buttons
-- Multiple selection
-- Dropdown menu
-- Slider
-- Date input
-
-### Pages and Categories
-
-A questionnaire can have multiple pages and categories. We also support categories inside other categories.
-
-All of these are loaded from the JSON file, so the application is not limited to one specific questionnaire.
-
-### Saving Answers
-
-We use Redux to manage the answers while the application is running.
-
-Users can move between pages, change their answers, or clear all answers and start again.
-
-### Results and Radar Charts
-
-Our application calculates average scores for categories based on the numerical answers.
-
-The scores are rounded to the nearest integer and displayed using radar charts. Users can see their results while completing the questionnaire.
-
-### Final Report
-
-At the end, users can view a report containing their results.
-
-We also added a print option so users can print the report or save it as a PDF through their browser.
-
-### Branding
-
-We added a separate `branding.json` file where we can change the application's primary color, background color, text color, logo, and background image.
-
-This allows us to customize the appearance without changing the React code.
-
-## How to Run Our Project
-
-First, clone the repository from GitHub and open the project folder.
-
-Install the required packages:
+Open the project folder in VS Code and run:
 
 ```bash
 npm install
 ```
 
-Start the application:
+### 2. Set Up the Database
+
+1. Start MySQL using XAMPP.
+2. Open phpMyAdmin at `http://localhost/phpmyadmin`.
+3. Create a database.
+4. Import the teacher-provided `databasestruct.txt` SQL schema.
+5. Import `backend/database/questionnaire.sql` to add the sample questionnaire.
+6. Check that the database connection settings in `backend/config/db.php` match your MySQL setup.
+
+### 3. Start the PHP Backend
+
+Open a terminal in the project folder and run:
+
+```bash
+php -S localhost:8000 -t backend
+```
+
+You can test the API at:
+
+`http://localhost:8000/api/questionnaire.php?id=1001`
+
+### 4. Start the React Frontend
+
+Open another terminal in the project folder and run:
 
 ```bash
 npm run dev
 ```
 
-Then open the localhost address shown in the terminal, usually:
+Open the application at:
 
 `http://localhost:5173/`
 
-To check whether the project builds correctly, run:
+Both the PHP server and MySQL must be running for the questionnaire to load.
+
+### 5. Build the Project (Optional)
+
+To check that the frontend builds successfully, run:
 
 ```bash
 npm run build
 ```
 
-## Testing Different Questionnaires
+## Sample Questionnaire
 
-We included two example questionnaires to test whether our application works with different JSON structures.
+The project includes a LAB UAS Student Feedback Questionnaire with ID `1001`.
 
-The default questionnaire can be opened at:
+The questionnaire data is retrieved from MySQL through the PHP API.
 
-`http://localhost:5173/`
-
-The second questionnaire can be opened at:
-
-### Switching Questionnaires
-
-The application includes two sample questionnaires: LAB UAS Student Feedback and Workplace Wellbeing.
-
-Users can switch between them using the **Next Questionnaire** and **Previous Questionnaire** buttons.
-
-When switching questionnaires, the application loads the selected JSON file, clears previous answers, and starts from the first page.
-
-Questionnaires are stored in the `public/questionnaires/` folder.
-
-Both files are located in the `public/questionnaires/` folder.
-
-## How the JSON Works
-
-Each questionnaire JSON file contains information about the questionnaire, including its title, introduction, pages, categories, questions, and results.
-
-Questions are connected to categories using `categoryId`, and categories are connected to pages using `pageId`.
-
-We use `parentId` for nested categories and `order` to control the order in which things appear.
-
-We created the application so it reads this structure and generates the questionnaire automatically.
-
-## Project Structure
-
-```text
-public/
-  questionnaires/
-    questionnaire.json
-    second-questionnaire.json
-    branding.json
-
-src/
-  components/
-    questionnaire/
-    questions/
-    results/
-  services/
-    questionnaireLoader.ts
-  store/
-    store.ts
-    answerSlice.ts
-  types/
-    questionnaire.ts
-  utils/
-    calculations.ts
-  App.tsx
-  main.tsx
-```
-
-## How We Tested It
-
-We tested the application by answering different types of questions, moving between pages, checking the radar charts, and opening the final report.
-
-We also tested clearing answers, printing the report, and loading a different questionnaire through the URL.
-
-To test branding, we changed the values in `branding.json` and checked how they affected the application.
-
-## Phase 1 and Phase 2
-
-In Phase 1, we are using React and TypeScript with JSON files. We are not using Laravel or a database.
-
-In Phase 2, we will work on connecting the application to a backend and database.
-
-## Teamwork
-
-Our team has five members. We divided the work into different parts, including the JSON structure, questionnaire components, question inputs, results, and integration.
-
-We used GitHub feature branches and pull requests to work on different features and merge them into the main branch.
+---
 
 **Course:** Dynamic Website Development  
 **University:** LAB University of Applied Sciences  
-**Project:** Online Questionnaire Tool  
-**Phase:** 1
+**Phase:** 2

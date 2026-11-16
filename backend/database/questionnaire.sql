@@ -6,9 +6,6 @@
 
 START TRANSACTION;
 
-
-START TRANSACTION;
-
 INSERT INTO `questionnaire` (`qid`, `predecessor`, `description`, `root`, `active`) VALUES (1001, NULL, 'LAB UAS Student Feedback Questionnaire', NULL, 1);
 INSERT INTO `qpage` (`pid`, `ptitle`, `pseqnum`, `qid`, `pgeneralinline`, `pgeneralfile`, `pscope`) VALUES (1001101, 'Teaching and Learning', 1, 1001, '', '', 'ALL');
 INSERT INTO `qpage` (`pid`, `ptitle`, `pseqnum`, `qid`, `pgeneralinline`, `pgeneralfile`, `pscope`) VALUES (1001102, 'Campus and Facilities', 2, 1001, '', '', 'ALL');
@@ -41,7 +38,7 @@ INSERT INTO `fchoice` (`fcid`, `fclabel`, `fcseqnum`, `fcoutvalid`, `fcpresentat
 INSERT INTO `fchoice` (`fcid`, `fclabel`, `fcseqnum`, `fcoutvalid`, `fcpresentation`, `fcsubseqnum`) VALUES (1001306, 'Computer labs', 2, 2, 'CHECKBOX', 0);
 INSERT INTO `fchoice` (`fcid`, `fclabel`, `fcseqnum`, `fcoutvalid`, `fcpresentation`, `fcsubseqnum`) VALUES (1001306, 'Cafeteria', 3, 3, 'CHECKBOX', 0);
 INSERT INTO `fchoice` (`fcid`, `fclabel`, `fcseqnum`, `fcoutvalid`, `fcpresentation`, `fcsubseqnum`) VALUES (1001306, 'Study rooms', 4, 4, 'CHECKBOX', 0);
-INSERT INTO `qfield` (`fid`, `gid`, `fseqnum`, `ftitle`, `root`) VALUES (1001307, 1001205, 2, 'How suitable are the study spaces for your needs?', NULL);
+INSERT INTO `qfield` (`fid`, `gid`, `fseqnum`, `ftitle`, `root`) VALUES (1001307, 1001205, 1, 'How suitable are the study spaces for your needs?', NULL);
 INSERT INTO `fchoice` (`fcid`, `fclabel`, `fcseqnum`, `fcoutvalid`, `fcpresentation`, `fcsubseqnum`) VALUES (1001307, 'Not suitable', 1, 1, 'RADIO', 0);
 INSERT INTO `fchoice` (`fcid`, `fclabel`, `fcseqnum`, `fcoutvalid`, `fcpresentation`, `fcsubseqnum`) VALUES (1001307, 'Moderately suitable', 2, 3, 'RADIO', 0);
 INSERT INTO `fchoice` (`fcid`, `fclabel`, `fcseqnum`, `fcoutvalid`, `fcpresentation`, `fcsubseqnum`) VALUES (1001307, 'Very suitable', 3, 5, 'RADIO', 0);
@@ -71,7 +68,7 @@ INSERT INTO `fchoice` (`fcid`, `fclabel`, `fcseqnum`, `fcoutvalid`, `fcpresentat
 INSERT INTO `fchoice` (`fcid`, `fclabel`, `fcseqnum`, `fcoutvalid`, `fcpresentation`, `fcsubseqnum`) VALUES (1001316, 'Excellent', 3, 5, 'RADIO', 0);
 INSERT INTO `qfield` (`fid`, `gid`, `fseqnum`, `ftitle`, `root`) VALUES (1001317, 1001209, 1, 'How satisfied are you with the support available for student wellbeing?', NULL);
 INSERT INTO `fslider` (`fsid`, `fsstoreas`, `fslabel`, `fsrangeb`, `fsrangee`) VALUES (1001317, 'INTEGER', '', 1, 5);
-INSERT INTO `qfield` (`fid`, `gid`, `fseqnum`, `ftitle`, `root`) VALUES (1001318, 1001209, 1, 'How easy is it to find information about wellbeing services?', NULL);
+INSERT INTO `qfield` (`fid`, `gid`, `fseqnum`, `ftitle`, `root`) VALUES (1001318, 1001209, 2, 'How easy is it to find information about wellbeing services?', NULL);
 INSERT INTO `fchoice` (`fcid`, `fclabel`, `fcseqnum`, `fcoutvalid`, `fcpresentation`, `fcsubseqnum`) VALUES (1001318, 'Difficult', 1, 1, 'BOXDROPDOWN', 0);
 INSERT INTO `fchoice` (`fcid`, `fclabel`, `fcseqnum`, `fcoutvalid`, `fcpresentation`, `fcsubseqnum`) VALUES (1001318, 'Somewhat easy', 2, 3, 'BOXDROPDOWN', 0);
 INSERT INTO `fchoice` (`fcid`, `fclabel`, `fcseqnum`, `fcoutvalid`, `fcpresentation`, `fcsubseqnum`) VALUES (1001318, 'Very easy', 3, 5, 'BOXDROPDOWN', 0);

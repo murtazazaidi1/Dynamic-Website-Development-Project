@@ -32,13 +32,15 @@ class QuestionBuilder
         foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $row) {
             $fid = (int) $row['fid'];
 
-            // fxy is not handled yet
+            // fxy is not handled 
             $details = $this->getTextQuestion($fid)
                 ?? $this->getSliderQuestion($fid)
                 ?? $this->getChoiceQuestion($fid);
 
             if ($details === null) {
-                continue;
+                    throw new RuntimeException(
+        "Unsupported question type for field $fid"
+    );
             }
 
             $questions[(string) $fid] = array_merge([
